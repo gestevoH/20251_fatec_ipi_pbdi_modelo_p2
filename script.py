@@ -14,7 +14,8 @@ from sklearn.preprocessing import MinMaxScaler
 #REQ 2
 #essa função deve devolver a base de dados
 def ler_base():
-  pass
+  dataset = pd.read_csv(r'dados.csv')
+  return dataset
 
 #REQ 3
 #essa função recebe a base lida anteriormente
