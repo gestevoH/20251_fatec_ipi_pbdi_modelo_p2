@@ -22,7 +22,7 @@ def ler_base():
 #ela deve devolver uma tupla contendo as features e a classe
 def dividir_em_features_e_classe(dataset):
   features = dataset.iloc[:,:-1].values
-  classe = dataset.iloc[:,:-1].values
+  classe = dataset.iloc[:,-1].values
   return features, classe
 
 #REQ 4
@@ -48,7 +48,11 @@ def lidar_com_valores_faltantes(features):
 #ela deve devolver as features da seguinte forma
 #Variável "Estado": Codificar com OneHotEncoding
 def codificar_categoricas(features):
-  pass
+  columnTransformer = ColumnTransformer(
+    transformers= [('encoder', OneHotEncoder(), [3])],
+    remainder= 'passthrough')
+  features = np.array(columnTransformer.fit_transform(features))
+  return features
 
 #REQ 6
 #essa função recebe as features e a classe
