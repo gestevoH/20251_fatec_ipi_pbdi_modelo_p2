@@ -78,6 +78,22 @@ def normalizar(features_treinamento, features_teste):
 def vai():
   #chame as suas funções aqui
   #exiba as quatro bases aqui
-     pass
+  labelEncoder_classe = LabelEncoder()
+  classe_codificada = labelEncoder_classe.fit_transform(classe)
+  features_tratadas = lidar_com_valores_faltantes(features)
+  features_codificadas = codificar_categoricas(features_tratadas)
+  features_treinamento, features_teste, classe_treinamento, classe_teste = \
+      obter_bases_de_treinamento_e_teste(features_codificadas, classe_codificada)
+  features_treinamento_normalizadas, features_teste_normalizadas = \
+      normalizar(features_treinamento, features_teste)
+  print("--- Features de Treinamento Normalizadas ---")
+  print(features_treinamento_normalizadas)
+  print("\n--- Features de Teste Normalizadas ---")
+  print(features_teste_normalizadas)
+  print("\n--- Classe de Treinamento ---")
+  print(classe_treinamento)
+  print("\n--- Classe de Teste ---")
+  print(classe_teste)
 
-vai()
+if __name__ == '__main__':
+  vai()
